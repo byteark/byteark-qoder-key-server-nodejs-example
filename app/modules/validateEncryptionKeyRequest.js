@@ -5,11 +5,14 @@ const ValidationError = require('../errors/ValidationError')
 const cert = fs.readFileSync('./resources/keys/byteark-qoder-encryption-key-exchanger-public.pem');
 
 function validateWithGeneralRules(request) {
-  if (!request.query.content_id) {
-    throw new ValidationError('content_id field is missing')
+  if (!request.query.project_key) {
+    throw new ValidationError('project_key field is missing')
   }
-  if (request.query.content_id.length < 6) {
-    throw new ValidationError('content_id field is too short')
+  if (!request.query.video_key) {
+    throw new ValidationError('video_key field is missing')
+  }
+  if (request.query.video_key.length < 6) {
+    throw new ValidationError('video_key field is too short')
   }
   if (!request.query.tech) {
     throw new ValidationError('tech field is missing')
@@ -21,7 +24,8 @@ function validateWithGeneralRules(request) {
 
 function makeExpectedJwtClaims(request) {
   return {
-    content_id: request.query.content_id,
+    project_key: request.query.project_key,
+    video_key: request.query.video_key,
     tech: request.query.tech,
     definition: request.query.definition,
   }

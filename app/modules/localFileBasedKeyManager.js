@@ -7,10 +7,10 @@ const keyDirectory = './storage/keys'
 
 function getKeyPath(content) {
   const q = content
-  const firstSubDirectory = q.content_id.substr(-4, 2)
-  const secondSubDirectory = q.content_id.substr(-2, 2)
+  const firstSubDirectory = q.video_key.substr(-4, 2)
+  const secondSubDirectory = q.video_key.substr(-2, 2)
 
-  return path.resolve(`${keyDirectory}/${firstSubDirectory}/${secondSubDirectory}/${q.content_id}/${q.tech}/${q.definition}/key`)
+  return path.resolve(`${keyDirectory}/${q.project_key}/${firstSubDirectory}/${secondSubDirectory}/${q.video_key}/${q.tech}/${q.definition}/key`)
 }
 
 function findKey(content) {

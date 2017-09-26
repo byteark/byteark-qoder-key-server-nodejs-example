@@ -37,7 +37,8 @@ Query string parameters:
 
 Endpoint:
 
-* `content_id`: Video key from ByteArk Qoder
+* `project_key`: Project key of the video
+* `video_key`: Video key
 * `tech`: will be `hls`
 * `definition`: Definition of the video (such as `480p`, `720p`)
 * `signature`: The [JWT](https://jwt.io/) token that you may verify to ensure that the request are actually from ByteArk Qoder
@@ -56,7 +57,8 @@ Endpoint:
 
 Query string parameters:
 
-* `content_id`: Video key from ByteArk Qoder
+* `project_key`: Project key of the video
+* `video_key`: Video key
 * `tech`: will be `hls`
 * `definition`: Definition of the video (such as 480p, 720p)
 
@@ -67,7 +69,8 @@ and contains these extra claims that matched with the values in the query string
 
 ```
 {
-    "content_id": "your_content_id",
+    "project_key": "your_project_key",
+    "video_key": "your_video_key",
     "tech": "hls",
     "definition": "720p"
 }
