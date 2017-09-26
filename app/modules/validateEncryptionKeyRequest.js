@@ -29,7 +29,7 @@ function makeExpectedJwtClaims(request) {
 
 function validateWithJwt(request) {
   return new Promise((resolve, reject) => {
-    jwt.verify(request.query.token, cert, makeExpectedJwtClaims(request), (error, decoded) => {
+    jwt.verify(request.query.signature, cert, makeExpectedJwtClaims(request), (error, decoded) => {
       error ? reject(new ValidationError(error.message)) : resolve(decoded)
     })
   })

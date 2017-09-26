@@ -40,7 +40,7 @@ Endpoint:
 * `content_id`: Video key from ByteArk Qoder
 * `tech`: will be `hls`
 * `definition`: Definition of the video (such as `480p`, `720p`)
-* `token`: The [JWT](https://jwt.io/) token that you may verify to ensure that the request are actually from ByteArk Qoder
+* `signature`: The [JWT](https://jwt.io/) token that you may verify to ensure that the request are actually from ByteArk Qoder
 
 ### Playback key endpoint
 
