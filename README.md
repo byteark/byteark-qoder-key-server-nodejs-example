@@ -37,7 +37,6 @@ Query string parameters:
 
 Endpoint:
 
-* `project_key`: Project key of the video
 * `video_key`: Video key
 * `tech`: will be `hls`
 * `definition`: Definition of the video (such as `480p`, `720p`)
@@ -57,7 +56,6 @@ Endpoint:
 
 Query string parameters:
 
-* `project_key`: Project key of the video
 * `video_key`: Video key
 * `tech`: will be `hls`
 * `definition`: Definition of the video (such as 480p, 720p)
@@ -69,7 +67,6 @@ and contains these extra claims that matched with the values in the query string
 
 ```
 {
-    "project_key": "your_project_key",
     "video_key": "your_video_key",
     "tech": "hls",
     "definition": "720p"

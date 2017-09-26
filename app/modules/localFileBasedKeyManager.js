@@ -10,7 +10,7 @@ function getKeyPath(content) {
   const firstSubDirectory = q.video_key.substr(-4, 2)
   const secondSubDirectory = q.video_key.substr(-2, 2)
 
-  return path.resolve(`${keyDirectory}/${q.project_key}/${firstSubDirectory}/${secondSubDirectory}/${q.video_key}/${q.tech}/${q.definition}/key`)
+  return path.resolve(`${keyDirectory}/${firstSubDirectory}/${secondSubDirectory}/${q.video_key}/${q.tech}/${q.definition}/key`)
 }
 
 function findKey(content) {

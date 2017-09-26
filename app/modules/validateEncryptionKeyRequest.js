@@ -5,9 +5,6 @@ const ValidationError = require('../errors/ValidationError')
 const cert = fs.readFileSync('./resources/keys/byteark-qoder-encryption-key-exchanger-public.pem');
 
 function validateWithGeneralRules(request) {
-  if (!request.query.project_key) {
-    throw new ValidationError('project_key field is missing')
-  }
   if (!request.query.video_key) {
     throw new ValidationError('video_key field is missing')
   }
@@ -24,7 +21,6 @@ function validateWithGeneralRules(request) {
 
 function makeExpectedJwtClaims(request) {
   return {
-    project_key: request.query.project_key,
     video_key: request.query.video_key,
     tech: request.query.tech,
     definition: request.query.definition,
