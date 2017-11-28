@@ -2,13 +2,14 @@ FROM node:8.6.0-stretch
 
 LABEL maintainer="support@byteark.com"
 
-COPY ./ /home/node/
+COPY --chown=node ["package.json", "package-lock.json", "/app/"]
+
+USER node
+WORKDIR /app
+RUN npm install
+
+COPY --chown=node . /app/
 
 EXPOSE 3000
-VOLUME [ "/home/node/storage/keys" ]
-WORKDIR /home/node
-
-USER 1000:1000
-
-RUN npm install
+VOLUME [ "/app/storage" ]
 CMD [ "npm", "run", "start" ]
