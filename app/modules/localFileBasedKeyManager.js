@@ -5,17 +5,16 @@ const path = require('path')
 
 const keyDirectory = './storage/keys'
 
-function getKeyPath(content) {
-  const q = content
-  const firstSubDirectory = q.video_key.substr(-4, 2)
-  const secondSubDirectory = q.video_key.substr(-2, 2)
+function getKeyPath(requestPayload) {
+  const firstSubDirectory = requestPayload.content_id.substr(-4, 2)
+  const secondSubDirectory = requestPayload.content_id.substr(-2, 2)
 
-  return path.resolve(`${keyDirectory}/${firstSubDirectory}/${secondSubDirectory}/${q.video_key}/${q.tech}/${q.definition}/key`)
+  return path.resolve(`${keyDirectory}/${firstSubDirectory}/${secondSubDirectory}/${requestPayload.content_id}/${requestPayload.tech}/${requestPayload.definition}/key`)
 }
 
-function findKey(content) {
+function findKey(requestPayload) {
   return new Promise((resolve, reject) => {
-    const keyPath = getKeyPath(content)
+    const keyPath = getKeyPath(requestPayload)
 
     fs.exists(keyPath, (exists) => {
       exists
@@ -27,9 +26,9 @@ function findKey(content) {
   })
 }
 
-function createKey(content) {
+function createKey(requestPayload) {
   return new Promise(function(resolve, reject) {
-    const keyPath = getKeyPath(content)
+    const keyPath = getKeyPath(requestPayload)
     const keyBuffer = crypto.randomBytes(16)
 
     mkdirp(path.dirname(keyPath), (error) => {
@@ -42,10 +41,8 @@ function createKey(content) {
   })
 }
 
-function findOrCreateKey(content) {
-  return findKey(content).then((key) => {
-    return key ? key : createKey(content)
-  })
+function findOrCreateKey(requestPayload) {
+  return findKey(requestPayload).then((key) => key ? key : createKey(requestPayload))
 }
 
 module.exports = {
