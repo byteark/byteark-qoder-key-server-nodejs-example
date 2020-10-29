@@ -8,7 +8,7 @@ const validateEncryptionKeyRequest = require('./modules/validateEncryptionKeyReq
 const errorHandler = require('./errors/handler')
 
 // Reading config
-const config = _.defaults(dotenv.config(), {
+const config = _.defaults(dotenv.config().parsed, {
   SERVER_ADDRESS: '0.0.0.0',
   SERVER_PORT: 3000,
   STORAGE_KEY_DIRECTORY: './storage/keys',
